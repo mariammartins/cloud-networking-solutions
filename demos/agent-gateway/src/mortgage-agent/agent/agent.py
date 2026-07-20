@@ -257,8 +257,9 @@ def _find_http_status_error(exc: BaseException, status_code: int) -> bool:
             queue.append(current.__cause__)
         if current.__context__ is not None:
             queue.append(current.__context__)
-        if isinstance(current, BaseExceptionGroup):
+        if hasattr(current, "exceptions") and isinstance(getattr(current, "exceptions"), (list, tuple)):
             queue.extend(current.exceptions)
+
     return False
 
 
@@ -517,7 +518,7 @@ def _build_agent():
     instruction = _INSTRUCTION_TEMPLATE.format(mcp_services_doc=_render_mcp_services_doc())
 
     return _PickleSafeAgent(
-        model=os.environ.get("MODEL_NAME", "gemini-3.1-flash-lite-preview"),
+        model=os.environ.get("MODEL_NAME", "gemini-3.1-flash-lite"),
         name="mortgage_assistant_agent",
         description=(
             "A mortgage underwriting assistant that connects to legacy document management, "
