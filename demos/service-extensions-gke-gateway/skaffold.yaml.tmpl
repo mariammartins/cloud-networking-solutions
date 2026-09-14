@@ -19,7 +19,8 @@ metadata:
 
 build:
   tagPolicy:
-    inputDigest: {}
+    envTemplate:
+      template: "latest"
   artifacts:
     - image: us-central1-docker.pkg.dev/${PROJECT_ID}/gateway-docker/legacy-dms
       context: src/legacy-dms
@@ -62,7 +63,8 @@ metadata:
 
 build:
   tagPolicy:
-    inputDigest: {}
+    envTemplate:
+      template: "latest"
   artifacts:
     - image: us-central1-docker.pkg.dev/${PROJECT_ID}/gateway-docker/dlp-ext-proc
       context: src/dlp-ext-proc
@@ -105,7 +107,8 @@ metadata:
 
 build:
   tagPolicy:
-    inputDigest: {}
+    envTemplate:
+      template: "latest"
   artifacts:
     - image: us-central1-docker.pkg.dev/${PROJECT_ID}/gateway-docker/income-verification-api
       context: src/income-verification-api
@@ -148,7 +151,8 @@ metadata:
 
 build:
   tagPolicy:
-    inputDigest: {}
+    envTemplate:
+      template: "latest"
   artifacts:
     - image: us-central1-docker.pkg.dev/${PROJECT_ID}/gateway-docker/corporate-email
       context: src/corporate-email

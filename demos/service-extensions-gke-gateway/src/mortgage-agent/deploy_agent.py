@@ -530,7 +530,8 @@ def main() -> None:
         deploy_config = dict(
             staging_bucket=staging_bucket,
             requirements=[
-                "google-cloud-aiplatform[adk,agent_engines]",
+                "google-adk[a2a,agent-identity]==1.34.0",
+                "google-cloud-aiplatform[adk,agent_engines]>=1.149.0,<1.154.0",
                 "google-auth>=2.0",
                 "cloudpickle",
                 "pydantic",

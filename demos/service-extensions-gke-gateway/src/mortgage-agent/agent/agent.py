@@ -149,12 +149,14 @@ def _build_agent():
         2,
         McpToolset(
             connection_params=StreamableHTTPConnectionParams(url=dms_url),
+            tool_name_prefix="dms",
         ),
     )
     _tools.insert(
         3,
         McpToolset(
             connection_params=StreamableHTTPConnectionParams(url=income_url),
+            tool_name_prefix="income",
         ),
     )
 
@@ -163,6 +165,7 @@ def _build_agent():
         4,
         McpToolset(
             connection_params=StreamableHTTPConnectionParams(url=email_url),
+            tool_name_prefix="email",
         ),
     )
 

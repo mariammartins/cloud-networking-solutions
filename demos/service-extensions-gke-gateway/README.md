@@ -85,7 +85,6 @@ gcloud container clusters get-credentials gateway-cluster \
     --region=us-central1 --project=$PROJECT_ID
 
 # 3. Generate K8s manifests from templates
-cp k8s/config.env.example k8s/config.env   # edit with your values
 bash k8s/generate.sh
 
 # 4. Build and deploy services
@@ -94,6 +93,10 @@ skaffold run
 
 # 5. Deploy Gateway configuration
 kubectl apply -k k8s/gateway-internal/
+kubectl apply -k k8s/corporate-email/
+kubectl apply -k k8s/dlp-ext-proc/
+kubectl apply -k k8s/income-verification-api/
+kubectl apply -k k8s/legacy-dms/
 ```
 
 ### Deploy the mortgage agent to Agent Engine
@@ -122,9 +125,6 @@ uv run python deploy_agent.py \
     --dns-peering-target-project=${PROJECT_ID} \
     --dns-peering-target-network=${VPC_NAME} \
     --enable-agent-identity \
-    --ge-deploy \
-    --app-id=${APP_ID} \
-    --oauth-client-id=${OAUTH_CLIENT_ID} \
     --agent-name=mortgage-agent
 ```
 
